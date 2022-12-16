@@ -13,6 +13,10 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
+
 
 
 
@@ -31,7 +35,9 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
     BrowserAnimationsModule,
     CollapseModule.forRoot(),
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    TooltipModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   providers: [EventoService],
   bootstrap: [AppComponent],
