@@ -1,28 +1,58 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Evento } from '../models/Evento';
+import { EventoService } from '../services/evento.service';
 
 @Component({
   selector: 'app-eventos',
   templateUrl: './eventos.component.html',
-  styleUrls: ['./eventos.component.scss']
+  styleUrls: ['./eventos.component.scss'],
+  //providers: [EventoService]
 })
 export class EventosComponent implements OnInit {
 
-  public eventos: any = [];
+  public eventos: Evento[] = [];
+  public eventosFiltrados: Evento[] = [];
+  public larguraImagem: number = 150;
+  public margemImagem: number = 2;
+  public exibirImagem: boolean = true;
+  private filtroListado: string = '';
 
-  widthImg: number = 50;
-  marginImg: number = 2;
+  public get filtroLista(): string {
+    return this.filtroListado;
+  }
+  public set filtroLista(value: string){
+    this.filtroListado = value;
+    this.eventosFiltrados = this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos;
+  }
 
-  constructor(private http: HttpClient) { }
+  filtrarEventos(filtrarPor: string): Evento[] {
+    filtrarPor = filtrarPor.toLocaleLowerCase();
+    return this.eventos.filter(
+      (evento: { tema: string; local: string; }) => evento.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
+      evento.local.toLocaleLowerCase().indexOf(filtrarPor)!== -1
+    );
+  }
 
-  ngOnInit(): void {
+  constructor(private eventoService: EventoService) { }
+
+  public ngOnInit(): void {
     this.getEventos();
   }
+
+  public alterarImagem(): void {
+    this.exibirImagem = !this.exibirImagem;
+  }
+
   public getEventos(): void {
-    this.http.get('https://localhost:44347/api/eventos').subscribe(
-      response => this.eventos = response,
-      error => console.log(error)
-    );
+    const observer = {
+      next:(eventos: Evento[]) => {
+        this.eventos = eventos;
+        this.eventosFiltrados = this.eventos
+      },
+      error: (error: any) => console.log(error)
+      //complete: () => {}
+    }
+    this.eventoService.getEventos().subscribe(observer);
   }
 
 }
