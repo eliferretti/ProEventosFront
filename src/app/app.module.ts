@@ -15,6 +15,7 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 
@@ -37,7 +38,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     FormsModule,
     FontAwesomeModule,
     TooltipModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [EventoService],
   bootstrap: [AppComponent],
