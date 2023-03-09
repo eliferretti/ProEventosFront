@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
+@import "../node_modules/bootswatch/dist/cosmo/variables";
 @import "~bootstrap/scss/bootstrap";
 
 /* Importing Datepicker SCSS file. */
@@ -9,4 +10,6 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 //@import '../node_modules/ngx-bootstrap/datepicker/bs-datapicker.css';
 @import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+@import "../node_modules/bootswatch/dist/cosmo/bootswatch";
+@import '../node_modules/bootswatch/dist/cosmo/bootstrap.min.css';
 

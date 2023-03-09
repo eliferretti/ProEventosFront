@@ -7,7 +7,8 @@ import { Evento } from '../models/Evento';
  // { providedIn: 'root' }
 )
 export class EventoService {
-  baseURL = 'https://localhost:44347/api/eventos';
+  //baseURL = 'https://localhost:44347/api/eventos';
+  baseURL = 'https://localhost:5001/api/eventos';
   constructor(private http: HttpClient) { }
 
   getEventos(): Observable<Evento[]> {
