@@ -8,8 +8,10 @@
 	</div>
 
 	<div class="col-md-6">
-    <p>Form value: {{form.value | json}}</p>
-    <p>Form valid: {{form.status | json}}</p>
+    <!--
+      <p>Form value: {{form.value | json}}</p>
+      <p>Form valid: {{form.status | json}}</p>
+    -->
 
 		<form class="p-1" [formGroup]="form">
 			<div class="pb-2 d-block d-md-none">
@@ -75,10 +77,10 @@
 					<input class="form-control" type="password"
           [ngClass]="{'is-invalid': f.confirmaSenha?.errors && f.confirmaSenha?.touched }"
           placeholder="Confirme a Senha" formControlName="confirmaSenha"/>
-          <div *ngIf="f.confirmaSenha.errors?.required && f.senha?.touched" class="invalid-feedback">
+          <div *ngIf="f.confirmaSenha.errors?.required && f.confirmaSenha?.touched" class="invalid-feedback">
             Confirmar senha é obrigatório.
           </div>
-          <div *ngIf="f.confirmaSenha.errors?.mustMatch && f.senha?.touched" class="invalid-feedback">
+          <div *ngIf="f.confirmaSenha.errors?.mustMatch && f.confirmaSenha?.touched" class="invalid-feedback">
             Confirmar senha deve ser igual a senha.
           </div>
 				</div>
