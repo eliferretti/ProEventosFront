@@ -5,7 +5,7 @@
           <div class="input-group-prepend">
             <div class="input-group-text">Filtro:</div>
           </div>
-         
+
           <input
             type="text"
             class="form-control"
@@ -41,7 +41,7 @@
         </tr>
       </thead>
       <tbody *ngIf="eventos && eventos.length">
-        <tr *ngFor="let evento of eventosFiltrados" (click)="detalheEvento(evento.id)" 
+        <tr *ngFor="let evento of eventosFiltrados" (click)="detalheEvento(evento.id)"
         style="cursor: pointer">
           <td class="d-none d-md-table-cell">
             <img
@@ -55,11 +55,11 @@
           <td>{{evento.id}}</td>
           <td>{{evento.tema}}</td>
           <td class="d-none d-md-table-cell">{{evento.local}}</td>
-          <td>{{evento.dataEvento | DateFormatPipe}}</td>
+          <td>{{ evento.dataEvento | DateFormatPipe }}</td>
           <td class="d-none d-md-table-cell">{{evento.qtdPessoas}}</td>
-          <td class="d-none d-md-table-cell">{{evento.lotes[0].nome}}</td>
+          <td class="d-none d-md-table-cell">{{evento.lotes[0]?.nome}}</td>
           <td>
-            <button type="button" class="btn btn-danger btn-lg" (click)="openModal(template)" ><i class="fa fa-trash" tooltip="Excluir"></i></button>
+            <button type="button" class="btn btn-danger btn-lg" (click)="openModal($event, template, evento.id)" ><i class="fa fa-trash" tooltip="Excluir"></i></button>
           </td>
         </tr>
       </tbody>
@@ -72,11 +72,11 @@
       </tfoot>
     </table>
   </div>
-  
+
   <ng-template #template>
     <div class="modal-body text-center">
-      <p>Tem certeza que quer deletar este Evento?</p>
-      <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
+      <p>Tem certeza que quer deletar o evento número {{this.eventoId}}</p>
+      <button type="button" class="btn btn-light mr-1 border" (click)="confirm()" >Sim</button>
       <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
     </div>
   </ng-template>

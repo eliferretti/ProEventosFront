@@ -13,12 +13,16 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
+import { DateTimeFormatPipeDatePicker } from './helpers/DataTimeFormatDatePicker.pipe';
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { ptBrLocale } from 'ngx-bootstrap/locale';
 
 import { ContatosComponent } from './components/contatos/contatos.component';
 import { PerfilComponent } from './components/user/perfil/perfil.component';
@@ -31,7 +35,7 @@ import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 
-
+defineLocale('pt-br', ptBrLocale);
 
 @NgModule({
   declarations: [
@@ -44,6 +48,7 @@ import { RegistrationComponent } from './components/user/registration/registrati
     NavComponent,
     TituloComponent,
     DateTimeFormatPipe,
+    DateTimeFormatPipeDatePicker,
     EventoDetalheComponent,
     EventoListaComponent,
     UserComponent,
@@ -61,6 +66,7 @@ import { RegistrationComponent } from './components/user/registration/registrati
     TooltipModule.forRoot(),
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-bottom-right',
