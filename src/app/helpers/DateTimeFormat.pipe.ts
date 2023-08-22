@@ -12,5 +12,3 @@ export class DateTimeFormatPipe extends DatePipe implements PipeTransform {
   }
 }
 
-
-
