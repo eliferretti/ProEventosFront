@@ -6,8 +6,8 @@ import { take } from 'rxjs/operators';
 
 @Injectable()
 export class LoteService {
-
-  baseURL = 'https://localhost:5001/api/lotes';
+  baseURL = 'https://localhost:44347/api/lotes';
+  //baseURL = 'https://localhost:5001/api/lotes';
 
   constructor(private http: HttpClient) { }
 

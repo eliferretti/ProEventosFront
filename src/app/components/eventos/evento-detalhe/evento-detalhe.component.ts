@@ -10,6 +10,7 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-evento-detalhe',
@@ -23,6 +24,8 @@ export class EventoDetalheComponent implements OnInit {
   form!: FormGroup;
   estadoSalvar: string = 'post';
   loteAtual = { id : 0, nome : '', indice : 0}
+  imagemURL = 'assets/img/Upload.png';
+  file!: File;
 
   get modoEditar(): boolean {
     return this.estadoSalvar === 'put';
@@ -86,6 +89,9 @@ export class EventoDetalheComponent implements OnInit {
           this.evento.lotes.forEach(lote => {
             this.lotes.push(this.criarLote(lote));
           });
+          if (this.evento.imagemUrl != '' && this.evento.imagemUrl != null) {
+            this.imagemURL = environment.apiUrl + 'resources/images/' + this.evento.imagemUrl;
+          }
           //this.carregarLotes();
           console.log(this.evento.dataEvento);
         },
@@ -133,7 +139,6 @@ export class EventoDetalheComponent implements OnInit {
         [Validators.required,
         Validators.max(120000)]
         ],
-      imagemUrl: ['', Validators.required],
       email: ['',
         [Validators.required,
         Validators.email]
@@ -272,6 +277,30 @@ export class EventoDetalheComponent implements OnInit {
 
   public declineDeleteLote(): void {
     this.modalRef.hide();
+  }
+
+  onFileChange(ev: any): void {
+    const reader = new FileReader();
+
+    reader.onload = (event: any) => this.imagemURL = event.target.result;
+
+    this.file = ev.target.files[0];
+    reader.readAsDataURL(this.file);
+    this.uploadImagem();
+  }
+
+  uploadImagem() : void {
+    this.spinner.show();
+    this.eventoService.postUpload(this.eventoId, this.file).subscribe(
+      () => {
+        this.carregarEvento();
+        this.toastr.success('Imagem atualizada com sucesso', 'Sucesso!');
+      },
+      (error : any) => {
+        this.toastr.error('Erro ao fazer upload da imagem', 'Erro!');
+        console.log(error);
+      },
+    ).add(() => this.spinner.hide());
   }
 
 }
