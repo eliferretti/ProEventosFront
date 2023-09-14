@@ -10,7 +10,7 @@
             type="text"
             class="form-control"
             placeholder="Filtrar por Tema e local"
-            [(ngModel)]="filtroLista"
+            (input)="filtrarEventos($event.target)"
           >
         </div>
       </div>
@@ -41,7 +41,7 @@
         </tr>
       </thead>
       <tbody *ngIf="eventos && eventos.length">
-        <tr *ngFor="let evento of eventosFiltrados" (click)="detalheEvento(evento.id)"
+        <tr *ngFor="let evento of eventos" (click)="detalheEvento(evento.id)"
         style="cursor: pointer">
           <td class="d-none d-md-table-cell">
             <img
@@ -71,6 +71,24 @@
         </tr>
       </tfoot>
     </table>
+    <div class="d-flex justify-content-center">
+      <pagination 
+        [boundaryLinks]="true" 
+        [align]="true"
+
+        [totalItems]="pagination.totalItems"
+        [itemsPerPage]="pagination.itemsPerPage"
+        [(ngModel)]="pagination.currentPage"   
+        (pageChanged)="pageChanged($event)"
+
+        pageBtnClass="btn"
+        previousText="&lsaquo;" 
+        nextText="&rsaquo;" 
+        firstText="&laquo;" 
+        lastText="&raquo;">
+      </pagination>
+    </div>
+
   </div>
 
   <ng-template #template>

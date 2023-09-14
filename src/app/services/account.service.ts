@@ -61,6 +61,7 @@ export class AccountService {
     this.currentUserSource.next();
     //this.currentUserSource.next(null);
     this.currentUserSource.complete();
+    location.reload();
   }
 
   public setCurrentUser(user: User): void {

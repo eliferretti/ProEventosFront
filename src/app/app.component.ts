@@ -18,7 +18,7 @@ export class AppComponent {
   setCurrentUser(): void {
     let user: any; // let user: User;
     if (localStorage.getItem('user')){
-      user = JSON.parse(localStorage.getItem('user') ?? '{}')
+      user = JSON.parse(localStorage.getItem('user') ?? '{}');
     } else {
       user = null; 
     }
