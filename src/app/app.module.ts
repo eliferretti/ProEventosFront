@@ -25,6 +25,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { NgxCurrencyModule } from 'ngx-currency';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './shared/nav/nav.component';
@@ -42,6 +43,7 @@ import { RegistrationComponent } from './components/user/registration/registrati
 
 import { JwtInterceptor } from './interceptors/jwtInterceptor';
 import { HomeComponent } from './components/home/home.component';
+import { PerfilDetalheComponent } from './components/user/perfil/perfil-detalhe/perfil-detalhe.component';
 
 
 
@@ -53,6 +55,7 @@ defineLocale('pt-br', ptBrLocale);
     EventosComponent,
     PalestrantesComponent,
     PerfilComponent,
+    PerfilDetalheComponent,
     ContatosComponent,
     DashboardComponent,
     NavComponent,
@@ -88,7 +91,7 @@ defineLocale('pt-br', ptBrLocale);
     ReactiveFormsModule,
     NgxCurrencyModule,
     PaginationModule.forRoot(),
-
+    TabsModule.forRoot(),
   ],
   providers: [
     EventoService,
